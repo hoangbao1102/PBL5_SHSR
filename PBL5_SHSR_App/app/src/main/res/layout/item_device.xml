@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin = "20dp"
+    app:cardCornerRadius="20dp"
+    >
+    <LinearLayout
+        android:weightSum="2"
+        android:layout_width="200dp"
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        >
+        <!-- Button switch -->
+
+        <androidx.appcompat.widget.SwitchCompat
+
+            android:id="@+id/switch_button"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:switchPadding="50dp"
+            />
+
+        <!-- Icon của device -->
+
+        <ImageView
+            android:id="@+id/device_icon"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@drawable/fan_on"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
