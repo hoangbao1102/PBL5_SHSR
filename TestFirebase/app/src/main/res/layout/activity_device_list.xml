@@ -10,16 +10,26 @@
     android:background="#DCDCDC"
     >
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lnla_mic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_weight="2"
-        android:orientation="vertical"
         android:background="@color/white"
-        >
+        android:orientation="vertical">
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnRecord"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_mic"
+            android:text="Record"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,6 +46,7 @@
             android:layout_marginTop="20dp"
 
             android:background="@drawable/corner_linearlayout"
+
             android:orientation="horizontal"
             android:weightSum="2"
 
@@ -238,7 +249,7 @@
             android:id="@+id/btnConnect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="172dp"
+            android:layout_marginBottom="100dp"
             android:background="@drawable/corner_button"
             android:text="Connect"
             app:layout_constraintBottom_toBottomOf="parent"
