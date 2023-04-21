@@ -12,13 +12,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
-
-            <ImageView
-                android:src="@drawable/mic_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
-
         </RelativeLayout>
     </item>
 </layer-list>

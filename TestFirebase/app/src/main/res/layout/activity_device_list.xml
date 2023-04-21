@@ -23,7 +23,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:background="@drawable/button_mic"
+
 
             android:text="Record"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,8 +41,8 @@
 
         <LinearLayout
             android:id="@+id/lnla_device1"
-            android:layout_width="180dp"
-            android:layout_height="130dp"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
 
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
@@ -80,12 +80,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Light" />
+                    android:text="Light"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:layout_marginVertical="10dp"
+                    />
 
                 <ImageView
                     android:id="@+id/device_icon1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:src="@drawable/light_on" />
             </LinearLayout>
@@ -94,8 +98,8 @@
         <!--Device 2-->
         <LinearLayout
             android:id="@+id/lnla_device2"
-            android:layout_width="180dp"
-            android:layout_height="130dp"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
 
             android:layout_marginTop="20dp"
 
@@ -133,12 +137,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Door" />
+                    android:text="Door"
+                    android:layout_marginVertical="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    />
+
 
                 <ImageView
                     android:id="@+id/device_icon2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:src="@drawable/door_close" />
             </LinearLayout>
@@ -146,8 +155,8 @@
         <!--Device 3-->
         <LinearLayout
             android:id="@+id/lnla_device3"
-            android:layout_width="180dp"
-            android:layout_height="130dp"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
 
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
@@ -184,12 +193,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Air conditioner" />
+                    android:layout_marginVertical="10dp"
+                    android:text="Air conditioner"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    />
 
                 <ImageView
                     android:id="@+id/device_icon3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:src="@drawable/air_conditioner_off" />
             </LinearLayout>
@@ -197,8 +210,8 @@
         <!--Device 4-->
         <LinearLayout
             android:id="@+id/lnla_device4"
-            android:layout_width="180dp"
-            android:layout_height="130dp"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
 
             android:background="@drawable/corner_linearlayout"
 
@@ -236,12 +249,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Fan" />
+                    android:text="Fan"
+                    android:layout_marginVertical="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    />
 
                 <ImageView
                     android:id="@+id/device_icon4"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:src="@drawable/fan_on" />
             </LinearLayout>
