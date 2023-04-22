@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,12 +21,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -99,6 +106,37 @@ public class MainActivity extends AppCompatActivity {
                                 public void onCompletion(MediaPlayer mediaPlayer) {
                                     isRecording = false;
                                     Toast.makeText(MainActivity.this, "Stopped playing", Toast.LENGTH_SHORT).show();
+                                    // Upload audio file to Firebase Storage
+                                    Uri file = Uri.fromFile(new File(audioSavePath));
+                                    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                                    StorageReference audioRef = storageRef.child("audio/" + file.getLastPathSegment());
+                                    UploadTask uploadTask = audioRef.putFile(file);
+                                    Toast.makeText(MainActivity.this, "Uploaded to Storage", Toast.LENGTH_SHORT).show();
+                                    // Listen for upload success/failure
+                                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            // Get the download URL of the uploaded file
+                                            audioRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    // Save audio file information to Realtime Database
+                                                    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+                                                    HashMap<String, Object> audioInfo = new HashMap<>();
+                                                    audioInfo.put("file_name", file.getLastPathSegment());
+                                                    audioInfo.put("file_url", uri.toString());
+                                                    databaseRef.child("audio").setValue(audioInfo);
+                                                }
+
+                                            });
+                                            Toast.makeText(MainActivity.this, "Uploaded to Dataset", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            // Handle failure
+                                        }
+                                    });
                                 }
                             });
 
