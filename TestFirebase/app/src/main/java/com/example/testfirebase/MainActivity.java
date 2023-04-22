@@ -229,6 +229,51 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        switch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(switch1.isChecked()) {
+                    databaseReference.child("device1").child("status").setValue(1);
+                }
+                else {
+                    databaseReference.child("device1").child("status").setValue(0);
+                }
+            }
+        });
+        switch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(switch2.isChecked()) {
+                    databaseReference.child("device2").child("status").setValue(1);
+                }
+                else {
+                    databaseReference.child("device2").child("status").setValue(0);
+                }
+            }
+        });
+        switch3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(switch3.isChecked()) {
+                    databaseReference.child("device3").child("status").setValue(1);
+                }
+                else {
+                    databaseReference.child("device3").child("status").setValue(0);
+                }
+            }
+        });
+        switch4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(switch4.isChecked()) {
+                    databaseReference.child("device4").child("status").setValue(1);
+                }
+                else {
+                    databaseReference.child("device4").child("status").setValue(0);
+                }
+            }
+        });
     }
 
     private void initView() {
