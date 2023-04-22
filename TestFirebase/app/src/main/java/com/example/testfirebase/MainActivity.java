@@ -9,6 +9,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.media.MediaRecorder.OutputFormat;
+import android.media.MediaRecorder.AudioEncoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -72,12 +74,14 @@ public class MainActivity extends AppCompatActivity {
                     if (!isRecording) {
                         isRecording = true;
                         audioSavePath = getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath()
-                                + "/" + "recordingAudio.wav";
+                                + "/" + "recordingAudio.mp3";
 
                         mediaRecorder = new MediaRecorder();
                         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-                        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-                        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+                        mediaRecorder.setOutputFormat(OutputFormat.MPEG_4);
+                        mediaRecorder.setAudioEncoder(AudioEncoder.AAC);
+                        mediaRecorder.setAudioSamplingRate(16000);
+                        mediaRecorder.setAudioEncodingBitRate(256000);
                         mediaRecorder.setOutputFile(audioSavePath);
 
                         try {
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         mediaRecorder.stop();
                         mediaRecorder.release();
                         Toast.makeText(MainActivity.this, "Recording stopped", Toast.LENGTH_SHORT).show();
+
 
                         mediaPlayer = new MediaPlayer();
                         try {
