@@ -12,7 +12,7 @@ class HMMRecognition:
     def __init__(self):
         self.model = {}
 
-        self.class_names = ['batden', 'tatden', 'batquat','tatquat','mocua','dongcua']
+        self.class_names = ['batden', 'tatden', 'batquat','tatquat','mocua','dongcua','batdieuhoa','tatdieuhoa','tangtocdoquat','giamtocdoquat']
         self.audio_format = 'wav'
 
         self.record_path = 'temp/record.wav'
@@ -21,16 +21,7 @@ class HMMRecognition:
 
         self.load_model()
 
-    @staticmethod
-    def detect_leading_silence(sound, silence_threshold=-42.0, chunk_size=10):
-        trim_ms = 0  # ms
-
-        assert chunk_size > 0  # to avoid infinite loop
-        while sound[trim_ms:trim_ms + chunk_size].dBFS < silence_threshold and trim_ms < len(sound):
-            trim_ms += chunk_size
-
-        return trim_ms
-
+    # @staticmethod
     def load_model(self):
         for key in self.class_names:
             name = f"{self.model_path}/model_{key}.pkl"
@@ -41,19 +32,8 @@ class HMMRecognition:
         if not file_name:
             file_name = self.record_path
 
-        # Trim silence
-        sound = AudioSegment.from_file(file_name, format=self.audio_format)
-
-        start_trim = self.detect_leading_silence(sound)
-        end_trim = self.detect_leading_silence(sound.reverse())
-
-        duration = len(sound)
-
-        trimmed_sound = sound[start_trim:duration - end_trim]
-        trimmed_sound.export(self.trimmed_path, format=self.audio_format)
-
         # Predict
-        record_mfcc = preprocessing.get_mfcc(self.trimmed_path)
+        record_mfcc = preprocessing.get_mfcc(file_name)
         scores = [self.model[cname].score(record_mfcc) for cname in self.class_names]
         print('scores', scores)
         predict_word = np.argmax(scores)
@@ -96,13 +76,13 @@ class HMMRecognition:
 
 if __name__ == '__main__':
     hmm_reg = HMMRecognition()
-    # hmm_reg.predict("datasets/batden/1_NNH_10_batden.wav")
-    # hmm_reg.predict("datasets/tatden/42_LVA_10_tatden.wav")
-    # hmm_reg.predict("datasets/batquat/46_VHB_10_batquat.wav")
-    # hmm_reg.predict("datasets/tatquat/49_NQC_10_tatquat.wav")
-    # hmm_reg.predict("datasets/mocua/70_CKVM_10_mocua.wav")
-    # hmm_reg.predict("datasets/dongcua/71_NNM_10_dongcua.wav")
-    hmm_reg.record()
-    hmm_reg.predict()
-
+    hmm_reg.predict("datasets/batden/1_NNH_10_batden.wav")
+    hmm_reg.predict("datasets/tatden/42_LVA_10_tatden.wav")
+    hmm_reg.predict("datasets/batquat/46_VHB_10_batquat.wav")
+    hmm_reg.predict("datasets/tatquat/49_NQC_10_tatquat.wav")
+    hmm_reg.predict("datasets/mocua/70_CKVM_10_mocua.wav")
+    hmm_reg.predict("datasets/dongcua/71_NNM_10_dongcua.wav")
+    for i in range(10):
+        hmm_reg.record()
+        hmm_reg.predict()
 

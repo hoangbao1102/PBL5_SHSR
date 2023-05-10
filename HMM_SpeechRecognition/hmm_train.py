@@ -14,8 +14,8 @@ import preprocessing
 
 class HMMTraining:
     def __init__(self):
-        self.class_names = ['batden', 'tatden', 'batquat','tatquat','mocua','dongcua']
-        self.states = [2, 2, 2, 2, 2, 2]
+        self.class_names = ['batden', 'tatden', 'batquat','tatquat','mocua','dongcua','batdieuhoa','tatdieuhoa','tangtocdoquat','giamtocdoquat']
+        self.states = [8, 8, 8, 8, 7, 8, 9, 10, 14, 14]
         self.dataset_path = 'datasets'
 
         self.X = {'train': {}, 'test': {}}
@@ -42,10 +42,11 @@ class HMMTraining:
             x_train, x_test, y_train, y_test = train_test_split(
                 all_data[cname], all_labels[cname],
                 test_size=0.33,
-                random_state=42
+                random_state=42,
             )
             self.X['train'][cname] = x_train
             self.X['test'][cname] = x_test
+            self.y['train'][cname] = y_train
             self.y['test'][cname] = y_test
 
         total_train = 0
@@ -72,8 +73,9 @@ class HMMTraining:
             print(cname)
             print(trans_matrix)
 
-            self.model[cname] = hmm.GaussianHMM(
+            self.model[cname] = hmm.GMMHMM(
                 n_components=self.states[idx],
+                n_mix = 6,
                 verbose=True,
                 n_iter=300,
                 startprob_prior=start_prob,
@@ -93,15 +95,22 @@ class HMMTraining:
 
     def evaluation(self):
         print('====== Evaluation ======')
+        predmean = []
         y_true = []
         y_pred = []
         for cname in self.class_names:
+            y_true2 = []
+            y_pred2 = []
             for mfcc, target in zip(self.X['test'][cname], self.y['test'][cname]):
                 scores = [self.model[cname].score(mfcc) for cname in self.class_names]
                 pred = np.argmax(scores)
                 y_pred.append(pred)
                 y_true.append(target)
-            print(f'{cname}:', (np.array(y_true) == np.array(y_pred)).sum() / len(y_true))
+                y_pred2.append(pred)
+                y_true2.append(target)
+            print(f'{cname}:', (np.array(y_true2) == np.array(y_pred2)).sum() / len(y_true2))
+            predmean.append((np.array(y_true2) == np.array(y_pred2)).sum() / len(y_true2))
+        print('Mean accuracy:', np.array(predmean).mean())
         print('======')
         print('Confusion matrix:')
         conf_matrix = confusion_matrix(y_true, y_pred)
@@ -110,9 +119,6 @@ class HMMTraining:
         sn.heatmap(df_cm, annot=True)
         plt.show()
         # print(confusion_matrix(y_true, y_pred))
-        
-
-
 
 if __name__ == '__main__':
     hmm_train = HMMTraining()
