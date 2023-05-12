@@ -260,7 +260,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/fan_on" />
+                    android:src="@drawable/fan_on_low" />
             </LinearLayout>
         </LinearLayout>
 
