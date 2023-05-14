@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestNewAction</string>
+    <string name="app_name">PBL5_SHSR</string>
     <string-array   name="category">
         <item>Mua sam</item>
         <item>An uong</item>
