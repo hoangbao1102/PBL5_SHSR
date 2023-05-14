@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="10">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/teal_200"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="MODIFY YOUR ACTION"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            >
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="Action's name:"
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                app:cardCornerRadius="5dp"
+                >
+                <EditText
+                    android:id="@+id/edtName"
+                    android:hint="Enter action's name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/grey"
+
+                    />
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="Choose your devices's status"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/lnla_device1"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+
+            android:background="@drawable/corner_linearlayout"
+
+            android:orientation="horizontal"
+            android:weightSum="2"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <!-- Button switch -->
+
+            <androidx.appcompat.widget.SwitchCompat
+
+                android:id="@+id/switch_button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+
+                />
+
+            <!-- Icon của device -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_device1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Light"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:layout_marginVertical="10dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/device_icon1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/light_on" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--Device 2-->
+        <LinearLayout
+            android:id="@+id/lnla_device2"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
+
+            android:layout_marginTop="20dp"
+
+            android:background="@drawable/corner_linearlayout"
+
+            android:orientation="horizontal"
+            android:weightSum="2"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lnla_device1"
+            app:layout_constraintTop_toTopOf="parent">
+            <!-- Button switch -->
+
+            <androidx.appcompat.widget.SwitchCompat
+
+                android:id="@+id/switch_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+
+                />
+
+            <!-- Icon của device -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_device2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Door"
+                    android:layout_marginVertical="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/device_icon2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/door_close" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--Device 3-->
+        <LinearLayout
+            android:id="@+id/lnla_device3"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/corner_linearlayout"
+
+
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnla_device1">
+            <!-- Button switch -->
+
+            <androidx.appcompat.widget.SwitchCompat
+
+                android:id="@+id/switch_button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+
+                />
+
+            <!-- Icon của device -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_device3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:text="Air conditioner"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/device_icon3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/air_conditioner_off" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--Device 4-->
+        <LinearLayout
+            android:id="@+id/lnla_device4"
+            android:layout_width="150dp"
+            android:layout_height="110dp"
+
+            android:background="@drawable/corner_linearlayout"
+
+
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="@+id/lnla_device3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lnla_device3"
+            app:layout_constraintTop_toTopOf="@+id/lnla_device3"
+            app:layout_constraintVertical_bias="0.0">
+            <!-- Button switch -->
+
+            <androidx.appcompat.widget.SwitchCompat
+
+                android:id="@+id/switch_button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+
+                />
+
+            <!-- Icon của device -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_device4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Fan"
+                    android:layout_marginVertical="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/device_icon4"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/fan_on_low" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/corner_button"
+            android:text="UPDATE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/corner_button"
+            android:text="DELETE"
+            app:layout_constraintRight_toLeftOf="@id/btnCancle"
+            app:layout_constraintLeft_toRightOf="@id/btnUpdate"
+            app:layout_constraintBottom_toBottomOf="@id/btnUpdate"
+            />
+
+        <Button
+            android:id="@+id/btnCancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/corner_button"
+            android:text="Cancel"
+            app:layout_constraintBottom_toBottomOf="@id/btnDelete"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
