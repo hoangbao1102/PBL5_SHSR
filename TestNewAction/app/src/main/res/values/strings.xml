@@ -1,10 +1,3 @@
 <resources>
     <string name="app_name">PBL5_SHSR</string>
-    <string-array   name="category">
-        <item>Mua sam</item>
-        <item>An uong</item>
-        <item>Sam sua</item>
-        <item>Dien nuoc</item>
-        <item>Di lai</item>
-    </string-array>
 </resources>

@@ -54,7 +54,7 @@ public class FragmentHome extends Fragment {
     private TextView txtName1, txtName2, txtName3, txtName4;
     private SwitchCompat switch1, switch2, switch3, switch4;
     private ImageView img1, img2, img3, img4;
-    private Button btnConnect, btnRecord;
+    private Button btnConnect, btnRecord, btnModel;
     private MediaRecorder mediaRecorder;
     private AudioRecord audioRecord;
     private MediaPlayer mediaPlayer;
@@ -105,7 +105,36 @@ public class FragmentHome extends Fragment {
             }
         });
 
+        btnModel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("model");
 
+                // Kiểm tra giá trị hiện tại của child "model"
+                databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // Lấy giá trị của child "model"
+                        int modelValue = dataSnapshot.getValue(Integer.class);
+
+                        // Đổi giá trị của child "model"
+                        int newModelValue = (modelValue == 0) ? 1 : 0;
+                        databaseReference1.setValue(newModelValue);
+
+                        if (newModelValue == 0) {
+                            btnModel.setText("HMM");
+                        } else {
+                            btnModel.setText("CNN");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý khi có lỗi xảy ra
+                    }
+                });
+            }
+        });
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,12 +206,40 @@ public class FragmentHome extends Fragment {
                         } else {
                             onoff_device(8);
                         }
+
+
                     }
 
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
+
+                DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("model");
+
+                // Kiểm tra giá trị hiện tại của child "model"
+                databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // Lấy giá trị của child "model"
+                        int modelValue = dataSnapshot.getValue(Integer.class);
+
+                        // Đổi giá trị của child "model"
+                        int newModelValue = (modelValue == 0) ? 1 : 0;
+                        databaseReference1.setValue(newModelValue);
+
+                        if (newModelValue == 0) {
+                            btnModel.setText("HMM");
+                        } else {
+                            btnModel.setText("CNN");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý khi có lỗi xảy ra
                     }
                 });
             }
@@ -229,6 +286,7 @@ public class FragmentHome extends Fragment {
             }
         });
         return view;
+
     }
 
     private void initView(View view) {
@@ -249,6 +307,7 @@ public class FragmentHome extends Fragment {
 
         btnConnect = view.findViewById(R.id.btnConnect);
         btnRecord = view.findViewById(R.id.btnRecord);
+        btnModel = view.findViewById(R.id.btnModel);
     }
 
     public void startRecording(int bufferElements2Rec) {

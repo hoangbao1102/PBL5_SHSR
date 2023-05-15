@@ -294,8 +294,21 @@
                 android:background="@drawable/corner_button"
                 android:text="Connect"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnModel"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btnModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/corner_button"
+                android:text="Model"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnConnect"
+ />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
