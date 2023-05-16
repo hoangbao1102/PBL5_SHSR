@@ -80,6 +80,49 @@ public class FragmentHome extends Fragment {
 
         initView(view);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("devices");
+        DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference().child("order");
+        ValueEventListener orderListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String getValue = (String) dataSnapshot.getValue(); // lấy giá trị của key "order"
+
+                // Tách các phần tử ra khỏi dấu phẩy
+                String[] values = getValue.split(",");
+                String deviceId = values[0];
+                int status = Integer.parseInt(values[2]);
+                databaseReference.child(deviceId).child("status").setValue(status);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        orderRef.addValueEventListener(orderListener);
+        DatabaseReference orderspeedRef = FirebaseDatabase.getInstance().getReference().child("orderspeed");
+        ValueEventListener orderspeedLis = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String getValue = (String) dataSnapshot.getValue(); // lấy giá trị của key "order"
+
+                // Tách các phần tử ra khỏi dấu phẩy
+                String[] values = getValue.split(",");
+                String deviceId = values[0];
+                int speed = Integer.parseInt(values[2]);
+                databaseReference.child(deviceId).child("speed").setValue(speed);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        orderspeedRef.addValueEventListener(orderspeedLis);
+
+
+
+
+
 
 
         btnRecord.setOnClickListener(new View.OnClickListener() {
