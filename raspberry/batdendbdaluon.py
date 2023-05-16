@@ -7,6 +7,9 @@ import threading
 import modelcnn
 import requests
 from hmm_predict import HMMRecognition
+
+
+
 # import hmm_predict
 # import RPi.GPIO as GPIO
 #ketnoi firebase 
@@ -55,17 +58,17 @@ def kiemtraquat():
     trangthai_ref = devices_ref.child('device4')
     trangthai_val = trangthai_ref.child('status').get()
     return trangthai_val
-def batquat(status):
-    while status==1:
-        if(kiemtraquat()==1):
-            print("bat quat")
-        else:
-            break
-    print(status)
+def batquat():
+    while kiemtraquat()==1:
+        
+        print("bat quat")
+        
+    print(kiemtraquat())
 def on_data_change_other(event):
-    device_name = os.path.basename(os.path.dirname(event.path))
+    device_name = event.path.split('/')[-2]
     print(device_name)
     print('Data changed:', event.data)
+    print("hello")
     if(device_name=="device1"):
         batden(event.data)
     if(device_name=="device2"):
@@ -76,9 +79,11 @@ def on_data_change_other(event):
     #     batquat(event.data) 
 def on_data_change_quat(event):
     
-    device_name = os.path.basename(os.path.dirname(event.path))
+    device_name = event.path.split('/')[-2]
+    # print(device_name)
+    # print('Data changed:', event.data)
     if(device_name=="device4"):
-        batquat(event.data)
+        batquat()
 
 def on_data_change_audio(event):
     print('Data changed:', event.data)
@@ -100,62 +105,88 @@ def on_data_change_audio(event):
         print("hmm")
         string=hmm_reg.predict("new_audio.wav")
     if "quat" in string:
-        refup = db.reference('devices/device4')
-        if "tat" in string:
-            refup.update({'status': 0})
-        elif "bat" in string:
-            refup.update({'status': 1})
-        elif "tang toc do" in string:
-            refup.update({'speed': 1})
+        
+        
+        device_name = 'device4'
+        refup = db.reference(f'devices/{device_name}')
+        if "bat" in string:
+            refup.child('status').set(1)
+            
+            
+            
+        elif "tat" in string:
+            refup.child('status').set(0)
+            
+           
+        elif "tangtocdo" in string:
+            refup.child('speed').set(1)
         else: 
-            refup.update({'speed': 0})
+            refup.child('speed').set(0)
         
     elif "cua" in string:
-        refup = db.reference('devices/device2')
-        if "tat" in string:
-            refup.update({'status': 0})
-        elif "bat" in string:
-            refup.update({'status': 1})
-        else: 
-            refup.update({'status': 0})
+        device_name = 'device2'
+        refup = db.reference(f'devices/{device_name}')
+        if "mo" in string:
+            refup.child('status').set(1)
+            
+            
+            
+        elif "dong" in string:
+            refup.child('status').set(0)
+        else:
+            refup.child('status').set(1)
     elif "den" in string:
-        refup = db.reference('devices/device1')
-        if "tat" in string:
-            refup.update({'status': 0})
-        elif "bat" in string:
-            refup.update({'status': 1})
-        else: 
-            refup.update({'status': 1})
+        device_name = 'device1'
+        refup = db.reference(f'devices/{device_name}')
+        if "bat" in string:
+            refup.child('status').set(1)
+            
+            
+            
+        elif "tat" in string:
+            refup.child('status').set(0)
+        else:
+            refup.child('status').set(1)
     elif "dieuhoa" in string:
-        refup = db.reference('devices/device3')
-        if "tat" in string:
-            refup.update({'status': 0})
-        elif "bat" in string:
-            refup.update({'status': 1})
-        else: 
-            refup.update({'status': 1})    
+        device_name = 'device3'
+        refup = db.reference(f'devices/{device_name}')
+        if "bat" in string:
+            refup.child('status').set(1)
+            
+            
+            
+        elif "tat" in string:
+            refup.child('status').set(0)
+        else:
+            refup.child('status').set(1)   
     else:
         print('not found')
     
+    
 def langnghedb_other():
+    data_updated.wait()
     # Lấy reference đến node "devices"
     devices_ref = db.reference('devices')
 
     # Lấy dữ liệu từ node "devices"
     devices_data = devices_ref.get()
+    
     devices_ref.listen(on_data_change_other)
 
     # Lặp vô hạn để tiếp tục lắng nghe sự thay đổi của Firebase Realtime Database
     
 def langnghedb_quat():
+    data_updated.wait()
     # Lấy reference đến node "devices"
     devices_ref = db.reference('devices')
 
     # Lấy dữ liệu từ node "devices"
     devices_data = devices_ref.get()
+    
     devices_ref.listen(on_data_change_quat)
 def langnghedb_audio():
     #lay link url 
+    data_updated.set()
     audios_ref = db.reference('audio')
     file_ref = audios_ref.child('file_url')
     file_urllink=file_ref.get()
@@ -163,6 +194,7 @@ def langnghedb_audio():
     audios_ref.child('file_url').listen(on_data_change_audio)
 if __name__ == '__main__':
     ketnoi()
+    data_updated = threading.Event()
     hmm_reg = HMMRecognition()
     
     
