@@ -269,11 +269,11 @@ public class FragmentHome extends Fragment {
                         // Lấy giá trị của child "model"
                         int modelValue = dataSnapshot.getValue(Integer.class);
 
-                        // Đổi giá trị của child "model"
-                        int newModelValue = (modelValue == 0) ? 1 : 0;
-                        databaseReference1.setValue(newModelValue);
+//                        // Đổi giá trị của child "model"
+//                        int newModelValue = (modelValue == 0) ? 1 : 0;
+//                        databaseReference1.setValue(newModelValue);
 
-                        if (newModelValue == 0) {
+                        if (modelValue == 0) {
                             btnModel.setText("HMM");
                         } else {
                             btnModel.setText("CNN");
