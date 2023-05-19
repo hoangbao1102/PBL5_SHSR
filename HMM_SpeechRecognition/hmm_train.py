@@ -15,7 +15,7 @@ import preprocessing
 class HMMTraining:
     def __init__(self):
         self.class_names = ['batden', 'tatden', 'batquat','tatquat','mocua','dongcua','batdieuhoa','tatdieuhoa','tangtocdoquat','giamtocdoquat']
-        self.states = [8, 8, 8, 8, 7, 8, 9, 10, 14, 14]
+        self.states = [8, 8, 8, 8, 7, 8, 9, 9, 14, 14]
         self.dataset_path = 'datasets'
 
         self.X = {'train': {}, 'test': {}}
@@ -75,7 +75,7 @@ class HMMTraining:
 
             self.model[cname] = hmm.GMMHMM(
                 n_components=self.states[idx],
-                n_mix = 6,
+                n_mix = 3,
                 verbose=True,
                 n_iter=300,
                 startprob_prior=start_prob,
