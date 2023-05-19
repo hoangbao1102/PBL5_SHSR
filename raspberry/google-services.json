@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "843790780755",
+    "firebase_url": "https://pbl5shsr-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pbl5shsr",
+    "storage_bucket": "pbl5shsr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843790780755:android:0f03918b5542c1347df9a6",
+        "android_client_info": {
+          "package_name": "com.example.pbl5_shsr_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843790780755-uu102gqi4p4jd4bpdtr5ak1i1p1jiraf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGhFU41CPSVjKSCiYoc6dpg70QGZoIMQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843790780755-uu102gqi4p4jd4bpdtr5ak1i1p1jiraf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
