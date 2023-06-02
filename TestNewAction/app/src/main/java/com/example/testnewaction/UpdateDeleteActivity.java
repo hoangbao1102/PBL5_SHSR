@@ -90,11 +90,11 @@ public class UpdateDeleteActivity extends AppCompatActivity implements View.OnCl
         }
         if(v == btnupdate) {
             if (itemAction.getActionname() != null) {
-                dbhelp.updateActionStatus(itemAction);
+                dbhelp.updateActionName(itemAction, String.valueOf(edtName.getText()));
                 finish();
             }
             else
-                Toast.makeText(this, "Insert action name", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Update action name", Toast.LENGTH_SHORT).show();
         }
         if (v == btndelete) {
             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());

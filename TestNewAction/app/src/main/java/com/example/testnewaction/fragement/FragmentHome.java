@@ -136,12 +136,12 @@ public class FragmentHome extends Fragment {
                     int bufferElements2Rec = AudioRecord.getMinBufferSize(RECORDER_SAMPLE_RATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING) / 2;
                     startRecording(bufferElements2Rec);
                     Toast.makeText(getContext(), "Recording Start", Toast.LENGTH_SHORT).show();
-                    btnRecord.setText("STOP RECORDING");
+//                    btnRecord.setText("STOP RECORDING");
                 } else {
                     // Stop recording
                     stopRecording();
                     isRecording = false;
-                    btnRecord.setText("Start Recording");
+//                    btnRecord.setText("Start Recording");
                     Toast.makeText(getContext(), "Recording Stop", Toast.LENGTH_SHORT).show();
                     playRecording(audioSavePath);
                 }

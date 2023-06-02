@@ -39,6 +39,10 @@ public class databaseHelper {
         DatabaseReference actionRef = mDatabase.child("actions").child(actionId).child("status");
         actionRef.setValue(status);
     }
+    public void updateActionName(ItemAction itemAction, String newname) {
+        DatabaseReference actionRef = mDatabase.child("actions").child(itemAction.getActionid()).child("name");
+        actionRef.setValue(newname);
+    }
 
     public void updateActionStatus(String actionId, String name, int status1, int status2, int status3, int status4) {
         DatabaseReference actionRef = mDatabase.child("actions").child(actionId);
