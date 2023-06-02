@@ -1,6 +1,0 @@
-hmm_reg.predict("datasets/batden/1_NNH_10_batden.wav")
-    hmm_reg.predict("datasets/tatden/42_LVA_10_tatden.wav")
-    hmm_reg.predict("datasets/batquat/46_VHB_10_batquat.wav")
-    hmm_reg.predict("datasets/tatquat/49_NQC_10_tatquat.wav")
-    hmm_reg.predict("datasets/mocua/70_CKVM_10_mocua.wav")
-    hmm_reg.predict("datasets/dongcua/71_NNM_10_dongcua.wav")
