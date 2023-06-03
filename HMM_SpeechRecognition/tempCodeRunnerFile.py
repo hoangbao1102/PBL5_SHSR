@@ -1,0 +1,7 @@
+hmm_reg.predict("datasets/batquat/46_VHB_10_batquat.wav")
+    hmm_reg.predict("datasets/tatquat/49_NQC_10_tatquat.wav")
+    hmm_reg.predict("datasets/mocua/70_CKVM_10_mocua.wav")
+    hmm_reg.predict("datasets/batdieuhoa/71_NNM_10_batdieuhoa.wav")
+    hmm_reg.predict("datasets/tatdieuhoa/71_NNM_10_tatdieuhoa.wav")
+    hmm_reg.predict("datasets/tangtocdoquat/71_NNM_10_tangtocdoquat.wav")
+    hmm_reg.predict("datasets/giamtocdoquat/71_NNM_10_giamtocdoquat.wav")

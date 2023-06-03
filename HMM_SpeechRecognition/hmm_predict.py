@@ -12,7 +12,7 @@ class HMMRecognition:
     def __init__(self):
         self.model = {}
 
-        self.class_names = ['batden', 'tatden', 'batquat','tatquat','mocua','dongcua','batdieuhoa','tatdieuhoa','tangtocdoquat','giamtocdoquat']
+        self.class_names = ['batden', 'tatden', 'batquat','tatquat','mocua','dongcua','batdieuhoa','tatdieuhoa','tangtocdoquat','giamtocdoquat','outlier']
         self.audio_format = 'wav'
 
         self.record_path = 'temp/record.wav'
@@ -76,13 +76,16 @@ class HMMRecognition:
 
 if __name__ == '__main__':
     hmm_reg = HMMRecognition()
-    # hmm_reg.predict("recordingAudio_test01.wav")
-    # hmm_reg.predict("datasets/batden/1_NNH_10_batden.wav")
-    # hmm_reg.predict("datasets/tatden/42_LVA_10_tatden.wav")
-    # hmm_reg.predict("datasets/batquat/46_VHB_10_batquat.wav")
-    # hmm_reg.predict("datasets/tatquat/49_NQC_10_tatquat.wav")
-    # hmm_reg.predict("datasets/mocua/70_CKVM_10_mocua.wav")
-    # hmm_reg.predict("datasets/dongcua/71_NNM_10_dongcua.wav")
+    hmm_reg.predict("recordingAudio_test01.wav")
+    hmm_reg.predict("datasets/batden/1_NNH_10_batden.wav")
+    hmm_reg.predict("datasets/tatden/42_LVA_10_tatden.wav")
+    hmm_reg.predict("datasets/batquat/46_VHB_10_batquat.wav")
+    hmm_reg.predict("datasets/tatquat/49_NQC_10_tatquat.wav")
+    hmm_reg.predict("datasets/mocua/70_CKVM_10_mocua.wav")
+    hmm_reg.predict("datasets/batdieuhoa/71_NNM_10_batdieuhoa.wav")
+    hmm_reg.predict("datasets/tatdieuhoa/71_NNM_10_tatdieuhoa.wav")
+    hmm_reg.predict("datasets/tangtocdoquat/71_NNM_10_tangtocdoquat.wav")
+    hmm_reg.predict("datasets/giamtocdoquat/71_NNM_10_giamtocdoquat.wav")
     for i in range(10):
         hmm_reg.record()
         hmm_reg.predict()
