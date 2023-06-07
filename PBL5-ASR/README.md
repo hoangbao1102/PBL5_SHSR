@@ -18,8 +18,10 @@ Chuỗi ví dụ từng bước cho bạn biết cách chạy project
 ```
 1) Tải project về máy của bạn
 2) Đảm bảo rằng bạn đã cài đặt các thư viện cần thiết trong requirements.txt
-3) Hãy thu âm 
-3) Chạy `Using_tf.ipynb` để xem quá trình xử lí dữ liệu và huấn luyện mô hình
+3) Hãy thu âm các lệnh dữ liệu từ nhiều người,ở đây tôi thu âm 10 người với 10 câu lệnh khác nhau,mỗi câu lệnh được thực hiện nói 10 lần. Bạn có thể thay đổi theo nhu cầu của mình
+4) Bạn sẽ cần phân chia các câu lệnh vào từng thư mục mang label của chúng.
+5) Sau khi có dữ liệu,bạn hãy xem qua file `Script.ipynb` và `script_2.ipynb` để có thể phân chia dữ liệu train test val giống như của tôi. 2 file này tôi không để comment nhưng nó khá dễ hiểu để nhìn ra được công việc của chúng là gì.
+6) Chạy `Using_tf.ipynb` để xem quá trình xử lí dữ liệu và huấn luyện mô hình
 ```
 ## Chạy thử nghiệm  
 
