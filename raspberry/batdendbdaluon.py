@@ -95,7 +95,7 @@ def on_data_change_audio(event):
     
     with open("new_audio.wav", "wb") as f:
      f.write(response.content)
-    model_ref = db.reference('model')
+    model_ref = db.reference('models').child('status')
     modelstring=model_ref.get()
     print(modelstring)
     if modelstring == 1:
