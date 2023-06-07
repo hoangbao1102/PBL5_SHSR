@@ -12,7 +12,7 @@ Những hướng dẫn này sẽ giúp bạn có thể chạy project này trên
 pip install -r requirements.txt
 ```
 
-### Cài đặt
+## Cài đặt
 
 Chuỗi ví dụ từng bước cho bạn biết cách chạy project
 ```
