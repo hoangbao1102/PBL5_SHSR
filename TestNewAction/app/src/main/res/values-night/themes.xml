@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.TestNewAction" parent="Theme.MaterialComponents.Light.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/cyan</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->

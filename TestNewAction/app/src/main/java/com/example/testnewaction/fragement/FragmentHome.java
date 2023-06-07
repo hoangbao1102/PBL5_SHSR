@@ -99,32 +99,26 @@ public class FragmentHome extends Fragment {
 //                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
-        orderRef.addValueEventListener(orderListener);
-        DatabaseReference orderspeedRef = FirebaseDatabase.getInstance().getReference().child("orderspeed");
-        ValueEventListener orderspeedLis = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String getValue = (String) dataSnapshot.getValue(); // lấy giá trị của key "order"
-
-                // Tách các phần tử ra khỏi dấu phẩy
-                String[] values = getValue.split(",");
-                String deviceId = values[0];
-                int speed = Integer.parseInt(values[2]);
-                databaseReference.child(deviceId).child("speed").setValue(speed);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            }
-        };
-        orderspeedRef.addValueEventListener(orderspeedLis);
-
-
-
-
-
-
-
+//        orderRef.addValueEventListener(orderListener);
+//        DatabaseReference orderspeedRef = FirebaseDatabase.getInstance().getReference().child("orderspeed");
+//        ValueEventListener orderspeedLis = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                String getValue = (String) dataSnapshot.getValue(); // lấy giá trị của key "order"
+//
+//                // Tách các phần tử ra khỏi dấu phẩy
+//                String[] values = getValue.split(",");
+//                String deviceId = values[0];
+//                int speed = Integer.parseInt(values[2]);
+//                databaseReference.child(deviceId).child("speed").setValue(speed);
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+////                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        orderspeedRef.addValueEventListener(orderspeedLis);
+//
         btnRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,23 +145,25 @@ public class FragmentHome extends Fragment {
         btnModel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("model");
+                DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("models");
 
                 // Kiểm tra giá trị hiện tại của child "model"
                 databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         // Lấy giá trị của child "model"
-                        int modelValue = dataSnapshot.getValue(Integer.class);
+                        int modelValue = dataSnapshot.child("status").getValue(Integer.class);
 
                         // Đổi giá trị của child "model"
                         int newModelValue = (modelValue == 0) ? 1 : 0;
-                        databaseReference1.setValue(newModelValue);
+                        databaseReference1.child("status").setValue(newModelValue);
 
                         if (newModelValue == 0) {
                             btnModel.setText("HMM");
+                            databaseReference1.child("name").setValue("HMM");
                         } else {
                             btnModel.setText("CNN");
+                            databaseReference1.child("name").setValue("CNN");
                         }
                     }
 
@@ -260,14 +256,14 @@ public class FragmentHome extends Fragment {
                     }
                 });
 
-                DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("model");
+                DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("models");
 
                 // Kiểm tra giá trị hiện tại của child "model"
                 databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         // Lấy giá trị của child "model"
-                        int modelValue = dataSnapshot.getValue(Integer.class);
+                        int modelValue = dataSnapshot.child("status").getValue(Integer.class);
 
 //                        // Đổi giá trị của child "model"
 //                        int newModelValue = (modelValue == 0) ? 1 : 0;
