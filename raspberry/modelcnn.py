@@ -54,7 +54,7 @@ def get_spectrogram(waveform):
   # shape (`batch_size`, `height`, `width`, `channels`).
   spectrogram = spectrogram[..., tf.newaxis]
   # Resize the spectrogram to a fixed size (e.g., 224x224).
-  spectrogram = tf.image.resize(spectrogram, size=(240, 240))
+  spectrogram = tf.image.resize(spectrogram, size=(256, 256))
   return spectrogram
 def decode_audio(audio_binary):
       # Decode WAV-encoded audio files to `float32` tensors, normalized
@@ -78,7 +78,7 @@ def remove_sil(path_in, path_out, format="wav"):
         sound[non_sil_times[0][0]: non_sil_times[-1][1]].export(path_out, format='wav')
 
 def predict():
-    model = tf.keras.models.load_model('CNN.h5')
+    model = tf.keras.models.load_model('CNN_final.h5')
     string = ['batden', 'batdieuhoa', 'batquat', 'dongcua', 'giamtocdoquat', 'mocua', 'tangtocdoquat', 'tatden', 'tatdieuhoa', 'tatquat']
     commands = np.array(string)
     record()
@@ -92,11 +92,29 @@ def predict():
     new_spectrogram = get_spectrogram(new_waveform)
     new_spectrogram = tf.expand_dims(new_spectrogram, axis=0)
     predictions = model.predict(new_spectrogram)
+    print(predictions)
 
     # Chuyển đổi các xác suất thành nhãn
     predicted_label_id = np.argmax(predictions[0])
     predicted_label = commands[predicted_label_id]
+    positive_predictions = predictions[predictions > 0]
+    print(np.sum(positive_predictions))
+    print(np.sum(predictions)) 
+    print(np.max(predictions[0]))
+    print(np.max(predictions[0])-np.min(predictions[0]))
+    # if np.max(predictions[0])<10:
+    #     return "Sai rồi em ơi"
+    # else:
+    print(np.count_nonzero(predictions>10))
 
-    print('Predicted label:', predicted_label)
-    return predicted_label
+    err=np.count_nonzero(predictions>10)
     
+    if (err>3 or np.max(predictions[0])<15):
+        return "Sai rồi em ơi"
+    else:
+        print('Predicted label:', predicted_label)
+        return predicted_label
+        
+    
+    
+predict()
