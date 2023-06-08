@@ -2,6 +2,12 @@
 - Cài đặt ứng dụng điện thoại tại folder TestNewAction vào máy điện thoại sử dụng hệ điều hành Android
 - Cài đặt phần mềm điều khiển hệ thống nhà thông minh tại folder raspberry
 - Sau khi đã thực hiện cài đặt ứng dụng và hệ thống điều khiển, các bạn mở ứng dụng lên.
+# Hướng dẫn sử dụng phần mềm hệ thống 
+
+1. Trên máy tính của bạn, mở folder raspberry
+2. Chạy file batdendbdownload.py (Lắng nghe thay đổi từ database và xử lý giọng nói)
+3. Trên raspberry chạy file batdendb.py (Thay đổi trạng thái các thiết bị trên database và điều khiển thiết bị trên mô hình nhà thông minh)
+4. Sử dụng ứng dụng điện thoại để điều khiển mô hình nhà thông minh.
 
 # Hướng dẫn sử dụng Ứng dụng điện thoại để quản lý hệ thống
 1. Thực hiện ghi âm câu lệnh
